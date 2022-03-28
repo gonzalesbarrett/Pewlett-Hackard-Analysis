@@ -35,23 +35,26 @@ Final output above.
 ### How many roles will need to be filled as the "silver tsunami" begins to make an impact?
 -	72,458 roles would need to be filled for the upcoming "silver tsunami". In addition, there are an additional 306,686 employees that may be retiring in the following ten years after the initial group. 
 The below query was used to identify employees who may be retiring in the subsequent ten years.
+
 SELECT e.emp_no,
-	 e.first_name,
-	 e.last_name,
-	 ti.title,
-	 ti.from_date,
-	 ti.to_date
+e.first_name,
+e.last_name,
+ti.title,
+ti.from_date,
+ti.to_date
 INTO future_retiring_employees
 FROM employees AS e
-	 	INNER JOIN titles AS ti
-		ON (e.emp_no = ti.emp_no)
+INNER JOIN titles AS ti
+ON (e.emp_no = ti.emp_no)
 WHERE (e.birth_date BETWEEN '1956-01-01' AND '1964-12-31')
 ORDER BY e.emp_no;
 
 SELECT COUNT (emp_no) FROM future_retiring_employees;
+
 ### Are there enough qualified, retirement-ready employees in the departments to mentor the next generation of Pewlett Hackard employees? 
 -	There are 3,125 eligible employees that could mentor the next generation. 1,376 of those employees have ‘Senior’ in their title which would indicate a healthy selection of already identified leaders could act as mentors. 
 The below query was used to identify count of mentor eligible employees by job title.
+
 SELECT COUNT (me.emp_no), 
 	 me.title 
 	 FROM mentorship_info AS me  
